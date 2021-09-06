@@ -4,8 +4,11 @@ Package provides functionality for importing from BPMN 2.0 XML to graph represen
 """
 from xml.dom import minidom
 
-import bpmn_python.bpmn_import_utils as utils
-import bpmn_python.bpmn_python_consts as consts
+# import bpmn_python.bpmn_import_utils as utils
+# import bpmn_python.bpmn_python_consts as consts
+
+import bpmn_python_lib.bpmn_python.bpmn_import_utils as utils
+import bpmn_python_lib.bpmn_python.bpmn_python_consts as consts
 
 
 class BpmnDiagramGraphImport(object):

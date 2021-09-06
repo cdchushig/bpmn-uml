@@ -5,13 +5,13 @@ Test unit, using simple graph made in bpmn.io editor for import/export operation
 import os
 import unittest
 
-import bpmn_python.bpmn_diagram_visualizer as visualizer
-import bpmn_python.bpmn_diagram_rep as diagram
+import bpmn_python_lib.bpmn_diagram_visualizer as visualizer
+import bpmn_python_lib.bpmn_diagram_rep as diagram
 
 
 class CamundaSimpleTests(unittest.TestCase):
     """
-    This class contains test for bpmn-python package functionality using a simple example of BPMN diagram
+    This class contains test for bpmn_python_lib package functionality using a simple example of BPMN diagram
     created in bpmn-io (Camunda library implementation).
     """
     output_directory = "./output/test-camunda/simple/"

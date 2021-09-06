@@ -5,13 +5,13 @@ Test unit, using simple graph made in BPMNEditor editor for import/export operat
 import os
 import unittest
 
-import bpmn_python.bpmn_diagram_visualizer as visualizer
-import bpmn_python.bpmn_diagram_rep as diagram
+import bpmn_python_lib.bpmn_diagram_visualizer as visualizer
+import bpmn_python_lib.bpmn_diagram_rep as diagram
 
 
 class BPMNEditorTests(unittest.TestCase):
     """
-    This class contains test for bpmn-python package functionality using an example BPMN diagram created in BPMNEditor.
+    This class contains test for bpmn_python_lib package functionality using an example BPMN diagram created in BPMNEditor.
     """
     output_directory = "./output/test-bpmneditor/"
     example_path = "../examples/xml_import_export/bpmn_editor_simple_example.xml"

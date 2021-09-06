@@ -1,7 +1,7 @@
 import unittest
 import os
 
-from bpmn_python.bpmn_compare_similarity import CompareBPMN
+from bpmn_python_lib.bpmn_compare_similarity import CompareBPMN
 
 
 class CompareBPMNTest(unittest.TestCase):

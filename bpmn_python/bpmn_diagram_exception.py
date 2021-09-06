@@ -1,6 +1,6 @@
 # coding=utf-8
 """
-Custom exception class for bpmn_python
+Custom exception class for bpmn_python_lib
 """
 
 

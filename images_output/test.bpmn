@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<definitions expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.signavio.com/bpmn20" typeLanguage="http://www.w3.org/2001/XMLSchema" xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <process id="process_1" isClosed="false" isExecutable="false" processType="None">
+    <startEvent id="0" isInterrupting="true" name="start" parallelMultiple="false">
+      <outgoing>0__1</outgoing>
+    </startEvent>
+  <task id="1" name="Task1">
+      <incoming>0__1</incoming>
+    <outgoing>1__2</outgoing>
+    </task>
+  <task id="2" name="Task2">
+      <incoming>1__2</incoming>
+    <outgoing>2__3</outgoing>
+    </task>
+  <endEvent id="3" name="">
+      <incoming>2__3</incoming>
+    </endEvent>
+  <sequenceFlow id="0__1" name="" sourceRef="0" targetRef="1" />
+  <sequenceFlow id="1__2" name="" sourceRef="1" targetRef="2" />
+  <sequenceFlow id="2__3" name="" sourceRef="2" targetRef="3" />
+  </process>
+</definitions>

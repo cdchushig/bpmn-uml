@@ -4,19 +4,26 @@ Package with BPMNDiagramGraph - graph representation of BPMN diagram
 """
 import copy
 
-import bpmn_python.bpmn_python_consts as consts
-import bpmn_python.grid_cell_class as cell_class
+# import bpmn_python_lib.bpmn_python_consts as consts
+# import bpmn_python_lib.grid_cell_class as cell_class
+
+import bpmn_python_lib.bpmn_python.bpmn_python_consts as consts
+import bpmn_python_lib.bpmn_python.grid_cell_class as cell_class
 
 
 def generate_layout(bpmn_graph):
     """
     :param bpmn_graph: an instance of BPMNDiagramGraph class.
     """
-    classification = generate_elements_clasification(bpmn_graph)
-    (sorted_nodes_with_classification, backward_flows) = topological_sort(bpmn_graph, classification[0])
-    grid = grid_layout(bpmn_graph, sorted_nodes_with_classification)
-    set_coordinates_for_nodes(bpmn_graph, grid)
-    set_flows_waypoints(bpmn_graph)
+    # classification = generate_elements_clasification(bpmn_graph)
+
+    print('holi')
+
+    # (sorted_nodes_with_classification, backward_flows) = topological_sort(bpmn_graph, classification[0])
+    # grid = grid_layout(bpmn_graph, sorted_nodes_with_classification)
+
+    # set_coordinates_for_nodes(bpmn_graph, grid)
+    # set_flows_waypoints(bpmn_graph)
 
 
 def generate_elements_clasification(bpmn_graph):
@@ -144,6 +151,9 @@ def generate_elements_clasification(bpmn_graph):
 
 def topological_sort(bpmn_graph, nodes_with_classification):
     """
+
+    :param bpmn_graph:
+    :param nodes_with_classification:
     :return:
     """
     node_param_name = "node"
@@ -213,8 +223,8 @@ def topological_sort(bpmn_graph, nodes_with_classification):
 def grid_layout(bpmn_graph, sorted_nodes_with_classification):
     """
 
-    :param sorted_nodes_with_classification:
     :param bpmn_graph:
+    :param sorted_nodes_with_classification:
     :return:
     """
     tmp_nodes_with_classification = list(sorted_nodes_with_classification)
@@ -345,7 +355,6 @@ def place_element_in_grid(node_with_classification, grid, last_row, last_col, bp
                                                                    bpmn_graph,nodes_with_classification, current_element_row - ((index - centre + 1) * consts.Consts.grid_column_width))
 
                 nodes_with_classification.remove(successor_node)
-
 
     return grid, last_row, last_col
 

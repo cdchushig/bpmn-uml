@@ -1,6 +1,6 @@
 # coding=utf-8
 """
-GridCell represents a single cell with node element on two-dimensional grid layout. It is used in diagram layouting
+GridCell represents a single cell with node element on two-dimensional grid layout. It is used in diagram for layouting
 process
 """
 

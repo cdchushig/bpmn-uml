@@ -7,7 +7,7 @@ import filecmp
 import os
 import unittest
 
-import bpmn_python.bpmn_diagram_rep as diagram
+import bpmn_python_lib.bpmn_diagram_rep as diagram
 
 
 class CsvExportTests(unittest.TestCase):

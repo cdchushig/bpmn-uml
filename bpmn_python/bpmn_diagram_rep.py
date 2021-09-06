@@ -6,12 +6,21 @@ import uuid
 
 import networkx as nx
 
-import bpmn_python.bpmn_diagram_exception as bpmn_exception
-import bpmn_python.bpmn_diagram_export as bpmn_export
-import bpmn_python.bpmn_diagram_import as bpmn_import
-import bpmn_python.bpmn_process_csv_export as bpmn_csv_export
-import bpmn_python.bpmn_process_csv_import as bpmn_csv_import
-import bpmn_python.bpmn_python_consts as consts
+# import bpmn_python.bpmn_diagram_exception as bpmn_exception
+# import bpmn_python.bpmn_diagram_export as bpmn_export
+# import bpmn_python.bpmn_diagram_import as bpmn_import
+# import bpmn_python.bpmn_process_csv_export as bpmn_csv_export
+# import bpmn_python.bpmn_process_csv_export as bpmn_csv_export
+# import bpmn_python.bpmn_python_consts as consts
+
+import bpmn_python_lib.bpmn_python.bpmn_diagram_exception as bpmn_exception
+import bpmn_python_lib.bpmn_python.bpmn_diagram_export as bpmn_export
+import bpmn_python_lib.bpmn_python.bpmn_diagram_import as bpmn_import
+import bpmn_python_lib.bpmn_python.bpmn_process_csv_import as bpmn_csv_import
+import bpmn_python_lib.bpmn_python.bpmn_process_csv_import as bpmn_csv_import
+import bpmn_python_lib.bpmn_python.bpmn_python_consts as consts
+
+from random import randrange
 
 
 class BpmnDiagramGraph(object):
@@ -262,7 +271,7 @@ class BpmnDiagramGraph(object):
         self.plane_attributes[consts.Consts.bpmn_element] = process_id
         return process_id
 
-    def add_flow_node_to_diagram(self, process_id, node_type, name, node_id=None):
+    def add_flow_node_to_diagram(self, process_id, node_type, name, pos_x, pos_y, node_id=None):
         """
         Helper function that adds a new Flow Node to diagram. It is used to add a new node of specified type.
         Adds a basic information inherited from Flow Node type.
@@ -274,6 +283,7 @@ class BpmnDiagramGraph(object):
         """
         if node_id is None:
             node_id = BpmnDiagramGraph.id_prefix + str(uuid.uuid4())
+
         self.diagram_graph.add_node(node_id)
         self.diagram_graph.nodes[node_id][consts.Consts.id] = node_id
         self.diagram_graph.nodes[node_id][consts.Consts.type] = node_type
@@ -283,13 +293,13 @@ class BpmnDiagramGraph(object):
         self.diagram_graph.nodes[node_id][consts.Consts.process] = process_id
 
         # Adding some dummy constant values
-        self.diagram_graph.nodes[node_id][consts.Consts.width] = "100"
-        self.diagram_graph.nodes[node_id][consts.Consts.height] = "100"
-        self.diagram_graph.nodes[node_id][consts.Consts.x] = "100"
-        self.diagram_graph.nodes[node_id][consts.Consts.y] = "100"
+        self.diagram_graph.nodes[node_id][consts.Consts.width] = "120"
+        self.diagram_graph.nodes[node_id][consts.Consts.height] = "120"
+        self.diagram_graph.nodes[node_id][consts.Consts.x] = str(200 + randrange(400, 500))
+        self.diagram_graph.nodes[node_id][consts.Consts.y] = str(200 + randrange(400, 500))
         return node_id, self.diagram_graph.nodes[node_id]
 
-    def add_task_to_diagram(self, process_id, task_name="", node_id=None):
+    def add_task_to_diagram(self, process_id, pos_x, pos_y, task_name="", node_id=None):
         """
         Adds a Task element to BPMN diagram.
         User-defined attributes:
@@ -302,7 +312,7 @@ class BpmnDiagramGraph(object):
         :param node_id: string object. ID of node. Default value - None.
         :return: a tuple, where first value is task ID, second a reference to created object.
         """
-        return self.add_flow_node_to_diagram(process_id, consts.Consts.task, task_name, node_id)
+        return self.add_flow_node_to_diagram(process_id, consts.Consts.task, task_name, pos_x, pos_y, node_id)
 
     def add_subprocess_to_diagram(self, process_id, subprocess_name, is_expanded=False, triggered_by_event=False,
                                   node_id=None):
@@ -355,7 +365,10 @@ class BpmnDiagramGraph(object):
         :return: a tuple, where first value is startEvent ID, second a reference to created object.
         """
         start_event_id, start_event = self.add_flow_node_to_diagram(process_id, consts.Consts.start_event,
-                                                                    start_event_name, node_id)
+                                                                    start_event_name,
+                                                                    100, 100,
+                                                                    node_id)
+
         self.diagram_graph.nodes[start_event_id][consts.Consts.parallel_multiple] = \
             "true" if parallel_multiple else "false"
         self.diagram_graph.nodes[start_event_id][consts.Consts.is_interrupting] = "true" if is_interrupting else "false"
@@ -398,6 +411,7 @@ class BpmnDiagramGraph(object):
         :return: a tuple, where first value is endEvent ID, second a reference to created object,
         """
         end_event_id, end_event = self.add_flow_node_to_diagram(process_id, consts.Consts.end_event, end_event_name,
+                                                                100, 100,
                                                                 node_id)
         end_event_definitions = {"terminate": "terminateEventDefinition", "escalation": "escalationEventDefinition",
                                  "message": "messageEventDefinition", "compensate": "compensateEventDefinition",

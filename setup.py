@@ -14,7 +14,7 @@ def read(fname):
 
 
 setup(
-    name="bpmn_python",
+    name="bpmn_python_lib",
     version="0.0.19.5-SNAPSHOT",
     author="Izbela Smietana, Krzysztof Honkisz",
     # author_email = "honkiszkrzystof@gmail.com",

@@ -5,13 +5,13 @@ Test unit, using more complex graph made in Signavio editor for import/export op
 import os
 import unittest
 
-import bpmn_python.bpmn_diagram_visualizer as visualizer
-import bpmn_python.bpmn_diagram_rep as diagram
+import bpmn_python_lib.bpmn_diagram_visualizer as visualizer
+import bpmn_python_lib.bpmn_diagram_rep as diagram
 
 
 class SignavioComplexTests(unittest.TestCase):
     """
-    This class contains test for bpmn-python package functionality using a complex example of BPMN diagram
+    This class contains test for bpmn_python_lib package functionality using a complex example of BPMN diagram
     created in Signavio Editor.
     """
     output_directory = "./output/test-signavio/complex/"

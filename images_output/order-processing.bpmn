@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='utf-8'?>
+<definitions expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.signavio.com/bpmn20" typeLanguage="http://www.w3.org/2001/XMLSchema" xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <process id="process_1" isClosed="false" isExecutable="false" processType="None">
+    <startEvent id="StartEvent_0" isInterrupting="true" name="start" parallelMultiple="false">
+      <outgoing>0__1</outgoing>
+    </startEvent>
+  <task id="Task_1" name="Receive Order">
+      <incoming>0__1</incoming>
+    <outgoing>1__1_split</outgoing>
+    </task>
+  <task id="Task_2a1" name="Fill Order">
+      <incoming>1_split__2a1</incoming>
+    <outgoing>2a1__2a1_split</outgoing>
+    </task>
+  <task id="Task_2a2a1" name="Send Invoice">
+      <incoming>2a1_split__2a2a1</incoming>
+    <outgoing>2a2a1__2a2a2</outgoing>
+    </task>
+  <task id="Task_2a2a2" name="Make Payment">
+      <incoming>2a2a1__2a2a2</incoming>
+    <outgoing>2a2a2__2a2a3</outgoing>
+    </task>
+  <task id="Task_2a2a3" name="Accept Payment">
+      <incoming>2a2a2__2a2a3</incoming>
+    <outgoing>2a2a3__3_join</outgoing>
+    </task>
+  <task id="Task_2a2b" name="Ship Order">
+      <incoming>2a1_split__2a2b</incoming>
+    <outgoing>2a2b__3_join</outgoing>
+    </task>
+  <endEvent id="EndEvent_3" name="">
+      <incoming>3_join__3</incoming>
+    <incoming>1_split__3</incoming>
+    </endEvent>
+  <inclusiveGateway gatewayDirection="Unspecified" id="1_split" name="">
+      <incoming>1__1_split</incoming>
+    <outgoing>1_split__2a1</outgoing>
+    <outgoing>1_split__3</outgoing>
+    </inclusiveGateway>
+  <parallelGateway gatewayDirection="Unspecified" id="2a1_split" name="">
+      <incoming>2a1__2a1_split</incoming>
+    <outgoing>2a1_split__2a2a1</outgoing>
+    <outgoing>2a1_split__2a2b</outgoing>
+    </parallelGateway>
+  <inclusiveGateway gatewayDirection="Unspecified" id="3_join" name="">
+      <incoming>2a2a3__3_join</incoming>
+    <incoming>2a2b__3_join</incoming>
+    <outgoing>3_join__3</outgoing>
+    </inclusiveGateway>
+  <sequenceFlow id="0__1" name="" sourceRef="0" targetRef="1" />
+  <sequenceFlow id="1__1_split" name="" sourceRef="1" targetRef="1_split" />
+  <sequenceFlow id="1_split__2a1" name="Accepted" sourceRef="1_split" targetRef="2a1">
+      <conditionExpression id="1_split__2a1_cond">Accepted</conditionExpression>
+    </sequenceFlow>
+  <sequenceFlow id="2a1__2a1_split" name="" sourceRef="2a1" targetRef="2a1_split" />
+  <sequenceFlow id="2a1_split__2a2a1" name="" sourceRef="2a1_split" targetRef="2a2a1" />
+  <sequenceFlow id="2a2a1__2a2a2" name="" sourceRef="2a2a1" targetRef="2a2a2" />
+  <sequenceFlow id="2a2a2__2a2a3" name="" sourceRef="2a2a2" targetRef="2a2a3" />
+  <sequenceFlow id="2a2a3__3_join" name="" sourceRef="2a2a3" targetRef="3_join" />
+  <sequenceFlow id="2a1_split__2a2b" name="" sourceRef="2a1_split" targetRef="2a2b" />
+  <sequenceFlow id="2a2b__3_join" name="" sourceRef="2a2b" targetRef="3_join" />
+  <sequenceFlow id="3_join__3" name="" sourceRef="3_join" targetRef="3" />
+  <sequenceFlow id="1_split__3" name="" sourceRef="1_split" targetRef="3" />
+  </process>
+</definitions>

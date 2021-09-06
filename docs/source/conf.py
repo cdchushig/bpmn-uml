@@ -14,7 +14,7 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../bpmn_python'))
+sys.path.insert(0, os.path.abspath('../bpmn_python_lib'))
 
 
 # -- Project information -----------------------------------------------------

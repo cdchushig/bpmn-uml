@@ -4,9 +4,9 @@ Test unit, creates a more complex graph using functions provided by package and 
 """
 import unittest
 
-import bpmn_python.bpmn_diagram_layouter as layouter
-import bpmn_python.bpmn_diagram_visualizer as visualizer
-import bpmn_python.bpmn_diagram_rep as diagram
+import bpmn_python_lib.bpmn_diagram_layouter as layouter
+import bpmn_python_lib.bpmn_diagram_visualizer as visualizer
+import bpmn_python_lib.bpmn_diagram_rep as diagram
 
 
 class ManualGenerationComplexTests(unittest.TestCase):
@@ -80,6 +80,7 @@ class ManualGenerationComplexTests(unittest.TestCase):
         # visualizer.visualize_diagram(bpmn_graph)
         visualizer.bpmn_diagram_to_dot_file(bpmn_graph, self.output_directory + self.output_dot_file)
         visualizer.bpmn_diagram_to_png(bpmn_graph, self.output_directory + self.output_png_file)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -6,8 +6,10 @@ import errno
 import os
 import xml.etree.cElementTree as eTree
 from io import BytesIO
+from random import randrange
 
-import bpmn_python.bpmn_python_consts as consts
+# import bpmn_python.bpmn_python_consts as consts
+import bpmn_python_lib.bpmn_python.bpmn_python_consts as consts
 
 
 class BpmnDiagramGraphExport(object):
@@ -371,8 +373,15 @@ class BpmnDiagramGraphExport(object):
         bounds = eTree.SubElement(output_element_di, "omgdc:Bounds")
         bounds.set(consts.Consts.width, params[consts.Consts.width])
         bounds.set(consts.Consts.height, params[consts.Consts.height])
-        bounds.set(consts.Consts.x, params[consts.Consts.x])
-        bounds.set(consts.Consts.y, params[consts.Consts.y])
+
+        print('----')
+        xx = str(int(params[consts.Consts.x]) + randrange(1000, 2000))
+        yy = str(int(params[consts.Consts.y]) + randrange(1000, 2000))
+        print(xx)
+        print(yy)
+
+        bounds.set(consts.Consts.x, xx)
+        bounds.set(consts.Consts.y, yy)
         if params[consts.Consts.type] == consts.Consts.subprocess:
             output_element_di.set(consts.Consts.is_expanded, params[consts.Consts.is_expanded])
 
